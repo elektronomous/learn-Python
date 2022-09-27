@@ -77,4 +77,16 @@ print(3 * (3 + 3) / 3 - 3);     # 3
 
 
 # how to round number instead get result like 3.999999
-print(round(10/3));
+print(round(10/3, 2));      # 3.33
+# another modifying to get rid of the number after the decimal is
+# using double forward-slash(//), alternative the int converter
+print(11//3);               # 3
+# the type of the result is integer
+print(type(11//3));         # <class 'int'>
+
+# using the f-string to replace the formatting output
+# instead of using + and the variable name
+height = 1.73;
+print("you height is " + str(height));  # you height is 1.73
+# you can use
+print(f"you height is {str(height)}");  # you height is 1.73
