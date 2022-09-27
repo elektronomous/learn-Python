@@ -44,14 +44,37 @@ print(type(val));   # <class 'int' >
 
 # FLoat conversion using float() function
 
-"""
-EXERCISE 1
-
-Write a program that adds the digits in a 2 digit number.
-e.g if the input was 35, then the output should be 3 + 5 = 8
-"""
-
-two_digit_number = input("type a two digit number: ");
-print(int(two_digit_number[0]) + int(two_digit_number[1]));
 
 
+# Mathematical Operations
+# when you add two values
+print(2 + 3);       # 5
+# when you substract two values
+print(3 - 2);       # 1
+# when you multiply two values
+print(3 * 2);       # 6
+# when you divide two values
+print(10/5);        # 2.0
+# note that when you dividing the result always a float
+# you can prove it by using the type() function
+print(type(10/5));  # <class 'float'>
+# you can create an exponent
+print(2 ** 3);      # 8
+
+# the order of operation priority called PEMDAS from highest to lowest:
+# Parentheses       => ()
+# Exponent          => **
+# Multiplication    => *
+# Division          => /
+# Addition          => +
+# Substraction      => -
+# you can prove it by using this example
+print(3 * 3 + 3 / 3 - 3);       # my result => 7
+
+# small challenge => using the operation above, get 3 as the result
+print(3 * (3 + 3) / 3 - 3);     # 3
+
+
+
+# how to round number instead get result like 3.999999
+print(round(10/3));
