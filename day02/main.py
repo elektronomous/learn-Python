@@ -89,4 +89,4 @@ print(type(11//3));         # <class 'int'>
 height = 1.73;
 print("you height is " + str(height));  # you height is 1.73
 # you can use
-print(f"you height is {str(height)}");  # you height is 1.73
+print(f"you height is {height}");  # you height is 1.73
