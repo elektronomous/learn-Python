@@ -34,7 +34,7 @@ loveScore = int(f"{nTRUE}{nLOVE}");
 
 if loveScore < 10 or loveScore > 90:
     print(f"Your score is {loveScore}, you go together like coke and mentos.");
-elif loveScore >= 40 and loveScore < 50:
+elif loveScore >= 40 and loveScore <= 50:
     print(f"Your score is {loveScore}, you are alright together.");
 else:
     print(f"Your score is {loveScore}.");
