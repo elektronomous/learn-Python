@@ -28,7 +28,6 @@ print(f"i eat the {fruits[2]}");
 fruits.append('Avocado');
 # oh your aunt coming from its village, and gives you a bunch of another fruits
 fruits.extend(['pawpaw', 'cherry', 'Grape']);
-
 # using list to shortcut the head and tails
 headOrTail = ['Tails','Heads'];
 print(headOrTail[random.randint(0,1)]);
