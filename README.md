@@ -1,1 +1,1 @@
-Learn Python using books Learning Python 5th Edition by Mark Lutz
+Learn Python via https://www.udemy.com/course/100-days-of-code/
