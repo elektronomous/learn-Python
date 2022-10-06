@@ -8,3 +8,7 @@ if random.randint(0, 1) == 1:
     print("Heads");
 else:
     print("Tails");
+
+# you this another solution
+twoSideOfCoins = ['Heads', 'Tails'];
+print(f"{twoSideOfCoins[random.randint(0,1)]}");
