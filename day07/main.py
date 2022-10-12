@@ -11,4 +11,4 @@ word_list = ["ardvark", "baboon", "camel"];
 #            letters in the chosen_word.
 
 chosen_word = random.choice(word_list);
-print(chosen_word);
+guess = input("Guess the word: ");
