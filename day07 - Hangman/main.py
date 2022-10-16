@@ -52,7 +52,16 @@ HANGMANPICS = ['''
 =========''']
 
 hangman = [HANGMANPICS[n] for n in range(len(HANGMANPICS)-1,-1,-1)];
-print(hangman[0]);
+print('''
+ _                                             
+| |                                            
+| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  
+| '_ \ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
+| | | | (_| | | | | (_| | | | | | | (_| | | | |
+|_| |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
+                    __/ |                      
+                   |___/
+      ''')
 
 # Step 1
 
@@ -103,15 +112,15 @@ lives = 6;
 while guessing:
     guess = input("Guess the word: ");
     if not guess:
-        break;
+        guessing = False;
 
-    if guess in chosen_word:
-        for n in range(len(chosen_word)-1):
+    
+    if guess in display:
+        print("You've already guess the letter");  
+    elif guess in chosen_word:    
+        for n in range(len(chosen_word)):
             if guess == chosen_word[n]:
-                if not n:
-                    display[n] = guess;
-                else:
-                    display[n-1] = guess;
+                display[n] = guess;
                 print(''.join(display));
     else:
         print(hangman[lives]);
