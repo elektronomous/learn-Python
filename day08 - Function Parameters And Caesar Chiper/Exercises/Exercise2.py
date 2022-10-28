@@ -17,7 +17,7 @@ from re import L
 
 def prime_checker(number):
     prime = [n for n in range(1,10) if not (number % n)];
-    if len(prime) > 1:
+    if len(prime) > 2:
         print("It's not a prime number");
     else:
         print("It's a prime number");
