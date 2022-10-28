@@ -18,12 +18,16 @@ shift = int(input("Type the shift number:\n"));
 # TODO - 3 - Call the encrypt function and pass in the user inputs. you should be able
 #            to test the code and encrypt a message
 
-def encrypt(text, shift):
-    if shift:
-        charPositions = [alphabet.index(char) for char in text];
+def encrypt(plainText, shiftAmount):
+    if shiftAmount:
+        charPositions = [alphabet.index(char) for char in plainText];
         shiftPositions = [shift + charPositions[n] for n in range(len(charPositions))];
-        chiperText = ''.join()
-    else:
-        return text; 
+        chiperText = ''.join(alphabet[shiftPositions[n] % nAlphabet] for n in range(len(shiftPositions)));
 
-encrypt(text, shift);
+        print(f"The encoded text is \"{chiperText}\"");
+
+        print(chiperText);
+    else:
+        print(text); 
+
+encrypt(plainText=text, shiftAmount=shift);
