@@ -7,4 +7,5 @@ dict2 = {
 };
 
 for key1 in dict1, dict2:
-    print(key1);
+    for key in key1:
+        print(key);
