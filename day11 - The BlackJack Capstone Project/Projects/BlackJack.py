@@ -90,6 +90,11 @@ def count_score(card:dict):
             total += cards[index];
     return total;
 
+def clear_screen():
+    if "Darwin" in os.uname().sysname or "Linux" in os.uname().sysname:
+        os.system('clear');
+    else:
+        os.system('cls');
 
 
 
@@ -102,7 +107,7 @@ while playing:
     
     if wanna_play[0] == 'n':
         break;
-    os.system('cls');
+    clear_screen();
 
     user_card = {};
     computer_card = {};
@@ -124,23 +129,26 @@ while playing:
         user_card[n] = [user_index_card[n], suit_symbols[user_index_suit[n]]];
         computer_card[n] = [computer_index_card[n], suit_symbols[user_index_suit[n]]];
     
-    # draw the card
-    print("Your card: ");
-    draw_card(user_card);    
-    # and show the score
-    print(f"Current Score: {count_score(user_card)}");
 
+    # and show the score
+    print(f"User Score: {count_score(user_card)}");
+    # draw the card
+    print("User card: ");
+    draw_card(user_card);    
+
+
+    print(f"Computer Score: {count_score(computer_card)}");
     # draw the card
     print("Computer card: ");
     draw_card(computer_card, True);
-    print(f"Current Score: {count_score(computer_card)}");
     
     start_user_index = start_computer_index = n;
     while user_decision:
         player_choice = input("Type (H)it to take another card\nType (S)tand to stop\n").upper()[0];
+        user_score = count_score(user_card);
 
         if player_choice == 'H':
-            os.system('cls');
+            clear_screen();
             # add card to user_card
             start_user_index += 1;
             user_card[start_user_index] = [random.randint(0,len(cards)-1), suit_symbols[random.randint(0,len(suit_symbols)-1)]];
@@ -148,6 +156,8 @@ while playing:
             print(f"User Score: {count_score(user_card)}");
             print(f"Your card:");
             draw_card(user_card);
+            
+            print(f"Computer score: {count_score(computer_card)}");
             print(f"Computer's card:");
             draw_card(computer_card);
             
@@ -160,18 +170,19 @@ while playing:
             break;
     
     while computer_score < user_score and computer_score < BLACKJACK:
-        # count computer score
-        os.system('cls');
-        
+        clear_screen();
         # add card to computer_card
         start_computer_index += 1;
         computer_card[start_computer_index] = [random.randint(0,len(cards)-1), suit_symbols[random.randint(0,len(suit_symbols)-1)]];
         
-        
+        # count computer score
+        computer_score = count_score(computer_card);
+
         print(f"User Score: {count_score(user_card)}");
         print("User card:");
         draw_card(user_card);
-        print(f"Computer Score: {count_score(computer_card)}");
+
+        print(f"Computer Score: {computer_score}");
         print("Computer card:");
         draw_card(computer_card);
         
@@ -183,7 +194,7 @@ while playing:
         time.sleep(2);   
 
         
-             
+    print(f"user score: {user_score}\ncomputer score: {computer_score}");
     if user_score == computer_score:
         print("Draw!");
     elif user_score > computer_score:
