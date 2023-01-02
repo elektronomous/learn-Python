@@ -6,7 +6,7 @@
     {
       "label": "Python Build",
       "type": "shell",
-      "command": "python3 ${file}",
+      "command": "python3 '${fileDirname}/${fileBasename}",
       "problemMatcher": [],
       "group": {
         "kind": "build",

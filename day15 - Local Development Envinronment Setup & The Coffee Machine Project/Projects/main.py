@@ -36,7 +36,7 @@ def main():
         if customer_order == "off" or customer_order not in MENU.keys():
             break;
         
-        # ordered as the MENU customer order
+        # ordered as the MENU that the customer order
         ordered = MENU[customer_order];
 
         if resource_enough(ordered):
