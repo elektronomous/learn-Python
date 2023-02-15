@@ -19,6 +19,7 @@ def main():
     colors = colorgram.extract("../Hirst.jpg", 100);
 
     y_pos = 0;
+    
     for _ in range(100):
         # move up and draw the dots
         if not _ % 10:
