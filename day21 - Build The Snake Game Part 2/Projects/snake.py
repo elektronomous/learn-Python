@@ -5,7 +5,10 @@ from turtle import Turtle
 # so we can create the other object before the first created object on 20pixel x coordinate
 TAIL_DEFAULT_POSITION = -20;
 N_MOVEMENT = 20;
+
 HEAD = 0;
+TAIL = -1;
+
 RIGHT = 0;
 UP = 90;
 LEFT = 180;
@@ -28,7 +31,8 @@ class Snake:
         """
         self.direction = 0; # by default, right
         self.create_snake();
-        self.head = self.snakes[0];
+        self.head = self.snakes[HEAD];
+        self.tail = self.snakes[TAIL];
     
     def create_snake(self):
         # we start by building a snake with 2 tails, with 1 head
@@ -42,8 +46,18 @@ class Snake:
             snake_part.setposition(x=TAIL_DEFAULT_POSITION * n, y=0);
             self.snakes.append(snake_part);
     
-    # you can't move the right to left vice versa, also with up and down.
-
+    def add_tail(self):
+        # get the tails position
+        tail_position = self.tail.position();
+        
+        snake_part = Turtle("square");
+        # set the color of the snake
+        snake_part.color("white");
+        # turn off the draw mode
+        snake_part.penup();
+        # add tail to the current last tails position
+        snake_part.setposition(tail_position);
+        self.snakes.append(snake_part);
 
     def move(self):
         self.move_part();
@@ -66,6 +80,7 @@ class Snake:
         self.head.forward(N_MOVEMENT);
             
     
+    # you can't move the right to left vice versa, also with up and down.
     def up(self):
         # if the snake heading position not crossed the UP position        
         if not self.head.heading() == DOWN:
@@ -74,13 +89,13 @@ class Snake:
             
 
     def down(self):
-        if not self.head.heading() == UP:
+        if not self.head.heading() == (UP):
             self.change_direction(DOWN);
     
     def left(self):
-        if not self.head.heading() == RIGHT:
+        if not self.head.heading() == (RIGHT):
             self.change_direction(LEFT);
     
     def right(self):
-        if not self.head.heading() == LEFT:
+        if not self.head.heading() == (LEFT):
             self.change_direction(RIGHT);
