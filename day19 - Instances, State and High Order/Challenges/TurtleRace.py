@@ -31,8 +31,21 @@ def main():
     else:
         race = False;
     
+    # by default, the turtle object has length 40 x 40
+    # so we can calculate when the turtle arrive at the width of the screen(finish line).
+    # widht of the screen is 500
+    finish_line = 500 - (40/2);
+    
     while race:
         for turtle in turtles.items():
+            if turtle[1].xcor() > finish_line:
+                race = False;
+                if turtle[1].pencolor() == user_bet:
+                    print(f"You win! The {turtle[1].pencolor()} turtle has finished");
+                else:
+                    print(f"You lost! The {turtle[1].pencolor()} turtle has finished");
+                    
+
             # move forward randomly from 0 - 10;
             turtle[1].forward(randint(0, 10));
 
