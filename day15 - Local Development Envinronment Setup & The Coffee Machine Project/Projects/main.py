@@ -33,7 +33,7 @@ def main():
         if customer_order == "report":
             show_resource();
             continue;
-        if customer_order == "off" or customer_order not in MENU.keys():
+        if customer_order == "off" or customer_order not in MENU:
             break;
         
         # ordered as the MENU that the customer order
@@ -55,7 +55,7 @@ def main():
                 # then show them again
                 show_resource();
 
-                print("Money: %.2f" % money);
+                print(f"Money: {money}");
 
                 money -= ordered['cost'];
                 # machine offer a change (susuk/kembalian)

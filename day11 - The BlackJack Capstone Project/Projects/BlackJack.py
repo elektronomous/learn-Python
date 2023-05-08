@@ -76,18 +76,20 @@ def draw_card(card:dict, computer_card:bool = False):
 
 def count_score(card:dict):
     total = 0;
+    
     for n in range(len(card)):
-        [index,suit] = card[n];
-
-        if not index:           # if the card was ACE
-            if (total + index) < 21:
-                total += cards[index];
-            else:
-                total += 1;
-        elif index > 9:           # if the card was JACK or QUEEN or KING
-            total += 10;
-        else:
+        index = card[n][0];     # get the index number to cards
+        
+        if index:
             total += cards[index];
+        else:
+            if total + cards[index] > 21:
+                total += 1;
+            else:
+                total += cards[index];
+    
+            
+            
     return total;
 
 def clear_screen():
@@ -96,111 +98,112 @@ def clear_screen():
     else:
         os.system('cls');
 
+def main():
+
+    playing = user_decision = computer_decision = True;
+
+    while playing:
+        user_score = computer_score = 0;
+
+        wanna_play = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ").lower()[0];
+        
+        if wanna_play[0] == 'n':
+            break;
+        clear_screen();
+
+        user_card = {};
+        computer_card = {};
+
+        # USER
+        # generate two index random numbers for cards
+        user_index_card = [random.randint(0,len(cards)-1), random.randint(0,len(cards)-1)];
+        # generate two index random numbers for suit_symbols
+        user_index_suit = [random.randint(0,len(suit_symbols)-1),random.randint(0,len(suit_symbols)-1)];
+
+        # COMPUTER
+        # generate two index random numbers for cards
+        computer_index_card = [random.randint(0,len(cards)-1), random.randint(0,len(cards)-1)];
+        # generate two index random numbers for suit_symbols
+        computer_index_suit = [random.randint(0,len(suit_symbols)-1),random.randint(0,len(suit_symbols)-1)];
+
+        # initialize the user_card & computer_card
+        for n in range(len(user_index_card)):
+            user_card[n] = [user_index_card[n], suit_symbols[user_index_suit[n]]];
+            computer_card[n] = [computer_index_card[n], suit_symbols[user_index_suit[n]]];
+        
+
+        # and show the score
+        print(f"User Score: {count_score(user_card)}");
+        # draw the card
+        print("User card: ");
+        draw_card(user_card);    
 
 
-playing = user_decision = computer_decision = True;
+        print(f"Computer Score: {count_score(computer_card)}");
+        # draw the card
+        print("Computer card: ");
+        draw_card(computer_card, True);
+        
+        start_user_index = start_computer_index = n;
+        while user_decision:
+            player_choice = input("Type (H)it to take another card\nType (S)tand to stop\n").upper()[0];
+            user_score = count_score(user_card);
 
-while playing:
-    user_score = computer_score = 0;
+            if player_choice == 'H':
+                clear_screen();
+                # add card to user_card
+                start_user_index += 1;
+                user_card[start_user_index] = [random.randint(0,len(cards)-1), suit_symbols[random.randint(0,len(suit_symbols)-1)]];
 
-    wanna_play = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ").lower()[0];
-    
-    if wanna_play[0] == 'n':
-        break;
-    clear_screen();
-
-    user_card = {};
-    computer_card = {};
-
-    # USER
-    # generate two index random numbers for cards
-    user_index_card = [random.randint(0,len(cards)-1), random.randint(0,len(cards)-1)];
-    # generate two index random numbers for suit_symbols
-    user_index_suit = [random.randint(0,len(suit_symbols)-1),random.randint(0,len(suit_symbols)-1)];
-
-    # COMPUTER
-    # generate two index random numbers for cards
-    computer_index_card = [random.randint(0,len(cards)-1), random.randint(0,len(cards)-1)];
-    # generate two index random numbers for suit_symbols
-    computer_index_suit = [random.randint(0,len(suit_symbols)-1),random.randint(0,len(suit_symbols)-1)];
-
-    # initialize the user_card & computer_card
-    for n in range(len(user_index_card)):
-        user_card[n] = [user_index_card[n], suit_symbols[user_index_suit[n]]];
-        computer_card[n] = [computer_index_card[n], suit_symbols[user_index_suit[n]]];
-    
-
-    # and show the score
-    print(f"User Score: {count_score(user_card)}");
-    # draw the card
-    print("User card: ");
-    draw_card(user_card);    
-
-
-    print(f"Computer Score: {count_score(computer_card)}");
-    # draw the card
-    print("Computer card: ");
-    draw_card(computer_card, True);
-    
-    start_user_index = start_computer_index = n;
-    while user_decision:
-        player_choice = input("Type (H)it to take another card\nType (S)tand to stop\n").upper()[0];
-        user_score = count_score(user_card);
-
-        if player_choice == 'H':
+                print(f"User Score: {count_score(user_card)}");
+                print(f"Your card:");
+                draw_card(user_card);
+                
+                print(f"Computer score: {count_score(computer_card)}");
+                print(f"Computer's card:");
+                draw_card(computer_card);
+                
+                if count_score(user_card) > BLACKJACK:
+                    user_score = LOST;
+                    computer_score = WINNER;
+                    break;
+                        
+            else:
+                break;
+        
+        while computer_score < user_score and computer_score < BLACKJACK:
             clear_screen();
-            # add card to user_card
-            start_user_index += 1;
-            user_card[start_user_index] = [random.randint(0,len(cards)-1), suit_symbols[random.randint(0,len(suit_symbols)-1)]];
+            # add card to computer_card
+            start_computer_index += 1;
+            computer_card[start_computer_index] = [random.randint(0,len(cards)-1), suit_symbols[random.randint(0,len(suit_symbols)-1)]];
+            
+            # count computer score
+            computer_score = count_score(computer_card);
 
             print(f"User Score: {count_score(user_card)}");
-            print(f"Your card:");
+            print("User card:");
             draw_card(user_card);
-            
-            print(f"Computer score: {count_score(computer_card)}");
-            print(f"Computer's card:");
+
+            print(f"Computer Score: {computer_score}");
+            print("Computer card:");
             draw_card(computer_card);
             
-            if count_score(user_card) > BLACKJACK:
-                user_score = LOST;
-                computer_score = WINNER;
-                break;
-                       
-        else:
-            break;
-    
-    while computer_score < user_score and computer_score < BLACKJACK:
-        clear_screen();
-        # add card to computer_card
-        start_computer_index += 1;
-        computer_card[start_computer_index] = [random.randint(0,len(cards)-1), suit_symbols[random.randint(0,len(suit_symbols)-1)]];
-        
-        # count computer score
-        computer_score = count_score(computer_card);
+            if computer_score > BLACKJACK:
+                    user_score = WINNER;
+                    computer_score = LOST;
+                    break;
+                
+            time.sleep(2);   
 
-        print(f"User Score: {count_score(user_card)}");
-        print("User card:");
-        draw_card(user_card);
-
-        print(f"Computer Score: {computer_score}");
-        print("Computer card:");
-        draw_card(computer_card);
-        
-        if computer_score > BLACKJACK:
-                user_score = WINNER;
-                computer_score = LOST;
-                break;
             
-        time.sleep(2);   
-
-        
-    print(f"user score: {user_score}\ncomputer score: {computer_score}");
-    if user_score == computer_score:
-        print("Draw!");
-    elif user_score > computer_score:
-        print("You Win!");
-    else:
-        print("You Lost!");
+        print(f"user score: {user_score}\ncomputer score: {computer_score}");
+        if user_score == computer_score:
+            print("Draw!");
+        elif user_score > computer_score:
+            print("You Win!");
+        else:
+            print("You Lost!");
 
 
-
+if __name__ == "__main__":
+    main();

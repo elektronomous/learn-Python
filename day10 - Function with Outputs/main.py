@@ -29,5 +29,9 @@ def format_name(f_name:str, l_name:str):
 
     return f"{f_name.lower().title()} {l_name.lower().title()}";
 
-print(format_name("faza","akbar muhammad"));
-print(format_name("","")); 
+def main():
+    print(format_name("faza","akbar muhammad"));
+    print(format_name("","")); 
+
+if __name__ == "__main__":
+    main();
