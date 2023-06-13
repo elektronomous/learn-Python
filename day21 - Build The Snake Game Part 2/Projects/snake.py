@@ -1,7 +1,7 @@
 from turtle import Turtle
 
 
-# by default, the Turtle object that created on the middle Screen object has 40x40 pixel element
+# by default, the Turtle object that created on the middle Screen object has 20x20 pixel element
 # so we can create the other object before the first created object on 20pixel x coordinate
 TAIL_DEFAULT_POSITION = -20;
 N_MOVEMENT = 20;

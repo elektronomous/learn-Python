@@ -1,7 +1,7 @@
 from turtle import Turtle
 from square import square_height
+from square import *
 
-X_DEFAULT_POSITION = 281;
 Y_DEFAULT_POSITION = [square_height,0,-square_height];
 
 class Paddle:
@@ -9,6 +9,7 @@ class Paddle:
         self.paddle = [];
         self.init_position = INIT_POSITION; 
         self.create_paddle();
+        self.head, self.tail = self.paddle[0], self.paddle[len(self.paddle)-1];
         self.set_initposition();
 
     def create_paddle(self):
@@ -24,7 +25,7 @@ class Paddle:
     
     def set_initposition(self):
         for n in range(len(self.paddle)):
-            self.paddle[n].setposition(-X_DEFAULT_POSITION if \
+            self.paddle[n].setposition(X_LEFT_DEF_POSITION if \
                                        self.init_position == "left" \
                                        else X_DEFAULT_POSITION,
                                        Y_DEFAULT_POSITION[n]);
@@ -34,8 +35,10 @@ class Paddle:
             square.sety(square.ycor() + n_movement);
             
     def up(self):
-        self.update_position(square_height);
+        if self.head.ycor() < CEILING:
+            self.update_position(square_height);
     
     def down(self):
-        self.update_position(-square_height);
+        if self.tail.ycor() > FLOOR:
+            self.update_position(-square_height);
             
