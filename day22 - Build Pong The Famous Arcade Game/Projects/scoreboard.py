@@ -1,13 +1,7 @@
 from turtle import Turtle
-from square import square_height, screen_height
+from square import *
 
-X_SCORE_DEFAULT_POSITION = 120;
-Y_SCORE_DEFAULT_POSITION = 255;
-X_DASHED_LINE = 0;
-Y_DASHED_LINE = 310;
-BOTTOM = 270;
-
-class Scoreboard(Turtle):
+class ScoreBoard(Turtle):
     def __init__(self):
         self.score_left = 0;
         self.score_right = 0;
@@ -21,6 +15,8 @@ class Scoreboard(Turtle):
         self.penup();
         # set the color of the scoreboard
         self.color("white");
+        # set the animation, we dont need to blink
+        self.speed("fastest");
         
         self.refresh();
     
@@ -28,7 +24,7 @@ class Scoreboard(Turtle):
         self.clear();
         self.pensize(5);
         
-            # for the dashed line
+        # for the dashed line
         self.setposition(X_DASHED_LINE, Y_DASHED_LINE);
                 
         for n in range(round(screen_height / square_height)):
@@ -45,3 +41,17 @@ class Scoreboard(Turtle):
         # for the right score's number
         self.setposition(X_SCORE_DEFAULT_POSITION, Y_SCORE_DEFAULT_POSITION);
         self.write(f"{self.score_right}", False, "center", font=("Gintronic", 30, "bold"));
+    
+    def increase_score(self, position):
+        if position == "left":
+            self.score_left += 1;
+        else:
+            self.score_right += 1;
+        self.refresh();
+    
+    def winner(self, position):
+        self.setposition(0, 0);
+        if position == "left":
+            self.write("GAME OVER. Left paddle is winner!", False, "center", font=("arial", 20, 'bold'));
+        else:
+            self.write("GAME OVER. Right paddle is winner!", False, "center", font=("arial", 20, 'bold'));

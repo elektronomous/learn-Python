@@ -41,4 +41,7 @@ class Paddle:
     def down(self):
         if self.tail.ycor() > FLOOR:
             self.update_position(-square_height);
+    
+    def get_paddle(self):
+        return self.paddle;
             

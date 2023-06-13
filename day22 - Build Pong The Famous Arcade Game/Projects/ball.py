@@ -1,6 +1,5 @@
 from turtle import Turtle
 from random import choice
-
 from square import *
 
 # create the ball
@@ -21,21 +20,29 @@ class Ball(Turtle):
         self.speed("fastest");
         
         # get the direction randomly
-        self.direction = [choice([-1,1]), choice([-1,1])];
-        # then move
-        self.move();
+        # we start from speed = 15
+        self.directions = [choice([-INITIAL_SPEED+1,INITIAL_SPEED-1]), choice([-INITIAL_SPEED,INITIAL_SPEED])];
+        self.x, self.y = [0,0];
     
     def move(self):
-           x, y = self.direction;
+           # check if the ball hit the CEILING
+           if self.y >= CEILING or self.y <= FLOOR:
+               self.change_directions('y');
+           # debug only
+           # if self.x >= X_DEFAULT_POSITION or self.x <= X_LEFT_DEF_POSITION:
+           #    self.change_direction('x');
+               
            # setposition of the ball
-           self.setposition(x,y);
+           self.setposition(self.x,self.y);
            # move the position again
-           x += x;
-           y += y;
+           self.x += self.directions[0];
+           self.y += self.directions[1];
+           
                
     
-    def change_direction(self):
-        # hit the CEILING
-        if self.ycor() >= CEILING:
-            self.direction = self.directions[self.direction];
-             
+    def change_directions(self, direction:str):
+        if direction == 'x':
+            self.directions[0] *= -1;
+        else:
+            self.directions[1] *= -1;
+        
