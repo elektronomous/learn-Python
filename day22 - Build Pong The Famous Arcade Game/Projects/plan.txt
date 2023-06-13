@@ -1,0 +1,24 @@
+PONG Game Components:
+
+= two stick
+= one ball
+= score
+
+TWO STICK
+= created with 3-square
+= set it position to the most right and most left.
+= it moved by user using "up" and "down" arrow
+= if the "ONE BALL" hit the stick (enter the area of the stick)
+  we need to bounce back the "BALL"
+= if the "BALL" missed to be bounced back, we LOST
+
+ONE BALL
+= created with 1-square
+= it moved randomly
+= when hit the "STICK" bounced back
+
+SCORE
+= keep track the "BALL"
+= increase when the "BALL" is bounced back
+  and cross the center-line.
+

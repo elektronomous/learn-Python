@@ -1,8 +1,7 @@
 from turtle import Turtle
 from random import randint
-
-SAFE_WIDTH = 280;
-SAFE_HEIGHT = SAFE_WIDTH;
+ 
+SAFE_HEIGHT = SAFE_WIDTH = 280;
 
 # create the snake food
 class Food(Turtle):
@@ -17,7 +16,7 @@ class Food(Turtle):
         self.shapesize(stretch_len=0.8, stretch_wid=0.8);
         # give the food color
         self.color("yellow");
-        # make the food animation faster, so we dont see the animation
+        # make the food animation faster, so we dont see the animation blink
         self.speed("fastest");
         """
         screen width = 600, height = 600

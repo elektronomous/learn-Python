@@ -42,7 +42,7 @@ class Snake:
             snake_part.setposition(x=TAIL_DEFAULT_POSITION * n, y=0);
             self.snakes.append(snake_part);
     
-    # you can't move the right to left vice versa, also with up and down.
+    # you can't move the right to left directly, also with up and down.
 
 
     def move(self):
@@ -51,12 +51,12 @@ class Snake:
         self.head.forward(N_MOVEMENT);
     
     def move_part(self):
-        # we move the tail first, then the head.
+        # we move the tail first, then next body after the tail.
         for n_part_of_the_snake in range(len(self.snakes)-1, 0, -1):
-            # get the front part coordinate
+            # get the next body part's coordinate
             xcord_front_part = self.snakes[n_part_of_the_snake-1].xcor();
             ycord_front_part = self.snakes[n_part_of_the_snake-1].ycor();
-            # move the backmost tails to the front tails
+            # move the current body part to the next body part
             self.snakes[n_part_of_the_snake].setposition(xcord_front_part, ycord_front_part);
 
     
