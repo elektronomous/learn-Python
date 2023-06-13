@@ -5,9 +5,10 @@ from scoreboard import ScoreBoard
 from time import sleep
 from square import *
 
+
 def check_hit(the_ball, the_wall):
     for each_square in the_wall:
-        if the_ball.distance(each_square) < 18:
+        if the_ball.distance(each_square) <= 20:
             the_ball.change_directions('x');
             return True;
     return False;
@@ -35,6 +36,9 @@ def main():
     right_paddle = Paddle("right");
     # create the ball
     ball = Ball();
+    # get the ball directions, so we can change the directions later
+    # once.
+    ball_directions = ball.get_directions();
     # create the scoreboard
     scoreboard  = ScoreBoard();
     
@@ -62,20 +66,23 @@ def main():
         # ball move
         ball.move();
         
-        # check if the ball hit the left paddle
-        if check_hit(the_ball=ball, the_wall=left_paddle.get_paddle()):
-            scoreboard.increase_score("left");
-        # check if the ball hit the right paddle
-        if check_hit(the_ball=ball, the_wall=right_paddle.get_paddle()):
-            scoreboard.increase_score("right");
-        
+        if ball_directions == "left":
+            # check if the ball hit the left paddle
+            if check_hit(the_ball=ball, the_wall=left_paddle.get_paddle()):
+                scoreboard.increase_score("left");
+                ball_directions = "right";
+        else:
+            # check if the ball hit the right paddle
+            if check_hit(the_ball=ball, the_wall=right_paddle.get_paddle()):
+                scoreboard.increase_score("right");
+                ball_directions = "left";
         
         # if the balls out, the game too
-        if ball.xcor() > X_RIGHT_PADDLE_BUMP:
+        if ball.xcor() > X_DEFAULT_POSITION:
             scoreboard.winner('left');
             playing = False;
             
-        if ball.xcor() < X_LEFT_PADDLE_BUMP:
+        if ball.xcor() < X_LEFT_DEF_POSITION:
             scoreboard.winner('right');
             playing = False;
     

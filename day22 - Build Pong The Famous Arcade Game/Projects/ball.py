@@ -45,4 +45,10 @@ class Ball(Turtle):
             self.directions[0] *= -1;
         else:
             self.directions[1] *= -1;
+    
+    def get_directions(self):
+        if self.x < 0:
+            return "left";
+        else:
+            return "right";
         
