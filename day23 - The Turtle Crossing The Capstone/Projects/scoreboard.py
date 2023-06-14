@@ -17,9 +17,6 @@ class Scoreboard(Turtle):
         self.write(f"level {self.level}", False, "Center", ("Gintronic", 10, "normal"));
     
     def game_over(self):
-        self.clear();
-        self.goto(START_POSITION);
-        self.write(f"level {self.level}", False, "Center", ("Gintronic", 10, "normal"));
         self.goto((0,0));
         self.write(f"Game Over", False, "Center", ("Gintronic", 10, "normal"));
     
