@@ -47,7 +47,7 @@ class Ball(Turtle):
             self.directions[1] *= -1;
     
     def get_directions(self):
-        if self.x < 0:
+        if self.directions[0] < 0:
             return "left";
         else:
             return "right";
