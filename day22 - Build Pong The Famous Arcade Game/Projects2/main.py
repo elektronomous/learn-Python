@@ -21,6 +21,8 @@ screen.onkey(r_paddle.go_up, "Up");
 screen.onkey(l_paddle.go_down, "s");
 screen.onkey(l_paddle.go_up, "w");
 
+screen.exitonclick();
+
 while True:
     screen.update();
     # to make it speed, change 0.1 to 0.01 even faster to 0.0000.. 1
@@ -43,5 +45,3 @@ while True:
     if ball.xcor() < -380:
         ball.reset_position();
         scoreboard.r_point();
-
-screen.exitonclick();
