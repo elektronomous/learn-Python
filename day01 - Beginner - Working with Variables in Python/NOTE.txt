@@ -1,0 +1,16 @@
+By the end of the day you will generate a band name generator. 
+
+The whole reasons why we learning to program is to be able to tell the computer what it needs to do
+and for it to follow our commands. our first line of commands:
+
+    print()
+
+now inside the parenthesis of the print command, iam going to tell it what's i want to print and it will be
+output that to our console. 
+
+    print("hello world");
+
+the way that print() function works is super simple: you type the keyword print and inside the parenthesis 
+you tell it what you're going to print. The reasons for the quotation marks inside the print() is that i can 
+tell the computer that in between the quotation mark is not our code. This is called Strings, you can imagine
+it as "a pearl necklace" where each pearl in the necklace you assign a character from "hello world".  
